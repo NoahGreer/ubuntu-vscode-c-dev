@@ -73,6 +73,5 @@ Vagrant.configure("2") do |config|
     sudo apt install -y ./code.deb
     popd
     su vagrant -c "code --install-extension ms-vscode.cpptools"
-    # apt-get install -y apache2
   SHELL
 end
