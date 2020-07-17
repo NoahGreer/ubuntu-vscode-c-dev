@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
     sudo apt install -y build-essential
     sudo apt install -y git
     pushd /tmp
-    wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
+    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O code.deb
     sudo apt install -y ./code.deb
     popd
     su vagrant -c "code --install-extension ms-vscode.cpptools"
