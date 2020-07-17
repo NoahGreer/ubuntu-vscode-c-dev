@@ -71,6 +71,7 @@ Vagrant.configure("2") do |config|
     wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O code.deb
     sudo apt install -y ./code.deb
     popd
+    su vagrant -c "code --install-extension donjayamanne.git-extension-pack"
     su vagrant -c "code --install-extension ms-vscode.cpptools"
   SHELL
 end
