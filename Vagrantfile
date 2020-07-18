@@ -67,14 +67,22 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
+    sudo apt-get update && sudo apt-get upgrade -y
+    sudo apt-get install -y ubuntu-desktop
+
+    sudo apt-get install gnupg2 -y
+    sudo curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+    sudo apt-get update -y
+    sudo apt-get install -y code
+    sudo apt-get install -y git
     sudo apt install -y build-essential
-    sudo apt install -y git
-    pushd /tmp
-    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O code.deb
-    sudo apt install -y ./code.deb
-    popd
+
     su vagrant -c "code --install-extension donjayamanne.git-extension-pack"
     su vagrant -c "code --install-extension ms-vscode.cpptools"
+
+    sudo shutdown -h now
   SHELL
 end
