@@ -50,6 +50,9 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    vb.customize ["modifyvm", :id, "--vram", "32"]
+
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
 
