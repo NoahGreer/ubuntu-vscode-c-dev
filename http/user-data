@@ -1,0 +1,17 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: en
+    variant: us
+  identity:
+    hostname: vagrant
+    username: vagrant
+    password: '$2y$12$zfS.Dpm682guriw6fJ5PXu4Kv7GSs7VYHUPGphQdSnT0wb4Rt1tVS'
+  ssh:
+    install-server: yes
+  late-commands:
+    - "echo 'Defaults:vagrant !requiretty' > /target/etc/sudoers.d/vagrant"
+    - "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /target/etc/sudoers.d/vagrant"
+    - "chmod 440 /target/etc/sudoers.d/vagrant"
